@@ -158,6 +158,7 @@ Questions:
 - Do we want to store block and block group data on our database? (low priority, not any need at the moment as far as we are concerned)
 - How to handle household numbers? Do we need household amnt per precinct? It might be enough just to have median income per precinct. At district level it might be more important to have house numbers just get a sense of poverty levels at the district levels.
 
+
    s         |   CVAP  |   VAP   |  total  |  household income |
 -------------|---------|---------|---------|-------------------|
 ACS          |   yes   |   yes   |   yes   |        yes        |
