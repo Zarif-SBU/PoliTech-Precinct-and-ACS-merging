@@ -86,12 +86,12 @@ Each processed GeoJSON file contains:
 Documentation detailing the process for ACS to precinct data aggragation. All data from redistricting hub.
 
 Example Louisiana:
-    - Precinct 2024 general election results: https://redistrictingdatahub.org/dataset/louisiana-2024-general-election-november-5-precinct-boundaries-and-election-results/
-    - Block Group ACS race data 2019-2023: https://redistrictingdatahub.org/dataset/louisiana-2023-select-race-data-from-the-american-community-survey-20192023-at-the-block-group-level/
-    - Block Group ACS CVAP race data 2019-2023: https://redistrictingdatahub.org/dataset/louisiana-block-group-cvap-data-2023/
-    - Census Block 2020 Census PL 94-171: https://redistrictingdatahub.org/dataset/louisiana-block-pl-94171-2020/ ## redistricting hub data contains P1, P2, P3 and P4 tables
-    Definition for each column: https://www.census.gov/programs-surveys/decennial-census/about/rdo.html
-    - 2023 Block Group ACS Income Data (2019-2023): 
+- Precinct 2024 general election results: https://redistrictingdatahub.org/dataset/louisiana-2024-general-election-november-5-precinct-boundaries-and-election-results/
+- Block Group ACS race data 2019-2023: https://redistrictingdatahub.org/dataset/louisiana-2023-select-race-data-from-the-american-community-survey-20192023-at-the-block-group-level/
+- Block Group ACS CVAP race data 2019-2023: https://redistrictingdatahub.org/dataset/louisiana-block-group-cvap-data-2023/
+- Census Block 2020 Census PL 94-171: https://redistrictingdatahub.org/dataset/louisiana-block-pl-94171-2020/ ## redistricting hub data contains P1, P2, P3 and P4 tables
+- Definition for each column: https://www.census.gov/programs-surveys/decennial-census/about/rdo.html
+- 2023 Block Group ACS Income Data (2019-2023): 
 
 Map Projection:
     - Store source and final files as EPSG:4326, during data processing convert shapefile projection to EPSG:5070.
