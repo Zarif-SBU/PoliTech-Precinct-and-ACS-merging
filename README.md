@@ -101,9 +101,8 @@ Map Projection:
 Distributing Populations:
 
 Total: Total population
-    VAP: This is not being stored because, ACS provides VAP details only at the census tract level which is much larger than block group. Could significantly impact accuracy when we attempt to prorate the data to precinct leel.
-    CVAP: Unlike VAP, Decenniel does not contains CVAP data as such we have to use VAP population as our scale to distribute ACS block group CVAP data down to census blocks.
-        ACS CVAP did not have an other data. All of the racial estimates provided are Non-Hispanic. Breakdowns for Hispanic/Non-Hispanic by race are not provided in the CVAP special tabulation.
+VAP: This is not being stored because, ACS provides VAP details only at the census tract level which is much larger than block group. Could significantly impact accuracy when we attempt to prorate the data to precinct leel.
+CVAP: Unlike VAP, Decenniel does not contains CVAP data as such we have to use VAP population as our scale to distribute ACS block group CVAP data down to census blocks. ACS CVAP did not have an other data. All of the racial estimates provided are Non-Hispanic. Breakdowns for Hispanic/Non-Hispanic by race are not provided in the CVAP special tabulation.
 
 This is how we plan to store race and ethnicity:
     Total (Hispanic + Non-Hispanic)
