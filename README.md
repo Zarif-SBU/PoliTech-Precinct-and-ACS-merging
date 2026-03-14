@@ -117,14 +117,14 @@ This is how we plan to store race and ethnicity:
     Hispanic (any race)
     Non-Hispanic (Total population of people who identify as Non-Hispanic)
 
-  Why did we choose to exclude racial demographics of people identifying as Hispanic?
+    Why did we choose to exclude racial demographics of people identifying as Hispanic?
     Short answer is that on the cvap bg data it says "All of the racial estimates provided are Non-Hispanic. Breakdowns for Hispanic/Non-Hispanic by race are not provided in the CVAP special tabulation". For the sake of simplicity and consistancy we also do not keep hispanic and non-hispanic breakdowns for total populations.
     Update: Census is moving Hispanic from Ethnicity to a category in race.
 
-  Long answer:
+    Long answer:
     Hispanic is counted as an ethnicity not race as such each race can be hispanic or non-hispanic. In certain states such as Taxes where hispanic make up almost 40% of the population it may be appropriate to keep the racial category of different Hispanic races. In this case, I chose to group all Hispanic races together into one Hispanic category under the assumption that racial differences will not significantly change the voting behavior of people identifying as Hispanic on the census. In addition, dividing all people of Hispanic origin by their racial identities might produce groups too small to perform redistricting and voting analysis on and they might no meet the threshold for redistricting guidelines
     
-  Among Hispanic voters though in certain states such as florida over 90% of Hispanic voters identify as white, though in the case of Florida it is mainly due to their large Cuban-American population. Overall though the vast majority of Hispanic voters identify as either white, two or more races or as other. Because of the diversity in racial makeup of hispanic, attempting to differentiate hispanic population by each racial category can lead to too much fragmantation and noise from the population which could make analysis and redistricting difficult.
+    Among Hispanic voters though in certain states such as florida over 90% of Hispanic voters identify as white, though in the case of Florida it is mainly due to their large Cuban-American population. Overall though the vast majority of Hispanic voters identify as either white, two or more races or as other. Because of the diversity in racial makeup of hispanic, attempting to differentiate hispanic population by each racial category can lead to too much fragmantation and noise from the population which could make analysis and redistricting difficult.
 
     Why did we keep 2 or more?
     ...
