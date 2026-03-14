@@ -117,6 +117,7 @@ This is how we plan to store race and ethnicity:
 - Non-Hispanic (Total population of people who identify as Non-Hispanic)
 
 Why did we choose to exclude racial demographics of people identifying as Hispanic?
+
 Short answer is that on the cvap bg data it says "All of the racial estimates provided are Non-Hispanic. Breakdowns for Hispanic/Non-Hispanic by race are not provided in the CVAP special tabulation". For the sake of simplicity and consistancy we also do not keep hispanic and non-hispanic breakdowns for total populations.
 Update: Census is moving Hispanic from Ethnicity to a category in race.
 
@@ -129,7 +130,8 @@ Why did we keep 2 or more?
 ...
 
 What does other mean, why does it exist and why include it as part of PoliTech?
-    Others is a catagory for people who do not feel that the census bureau's pre-defined racial catagories effectivly represent them. For example, people who identify as hispanic often select other on the census, as do people from the MENA(Middle eastern or North African) region- which civil rights groups and other organizations such as ACLU(American Civicl Liberties Union) have long advocated for the OMB(Office of Management and Budget) to revisit the racial and ethnic definitions on the census. In fact on March 28, 2024, the OBM released a revised Statistical Policy Directive No.15 (or SPD 15, a directive that provides the standards for maintaining, collecting, and presenting race and ethnicity data for all Federal information collection and reporting purposes) which has now added Middle Eastern and North African as it's own racial category. Look at the link for more detail: https://spd15revision.gov/content/spd15revision/en/2024-spd15.html 
+
+Others is a catagory for people who do not feel that the census bureau's pre-defined racial catagories effectivly represent them. For example, people who identify as hispanic often select other on the census, as do people from the MENA(Middle eastern or North African) region- which civil rights groups and other organizations such as ACLU(American Civicl Liberties Union) have long advocated for the OMB(Office of Management and Budget) to revisit the racial and ethnic definitions on the census. In fact on March 28, 2024, the OBM released a revised Statistical Policy Directive No.15 (or SPD 15, a directive that provides the standards for maintaining, collecting, and presenting race and ethnicity data for all Federal information collection and reporting purposes) which has now added Middle Eastern and North African as it's own racial category. Look at the link for more detail: https://spd15revision.gov/content/spd15revision/en/2024-spd15.html 
 
 It is difficult to define racial categories as race itself is a social construct. It is an identity that is used to generalize people based on their physical attributes such as skin color which ignore the national, cultural and language identities that exists between people of the same race. Though through SPD 15, the OMB attempts to define racial categories as they are "understood to be socio-political constructs and are not attempts to define race and ethnicity biologically or genetically". The census bureau follows the racial and ethnic definitions set by the SPD 15.
     
@@ -140,19 +142,21 @@ In terms of the PoliTech research, because Other is a very diverse category that
  Ofcourse it should'nt need to be said that even if race is a man made category, it still has real world impact on people wether or not they themselves identify with the race.
 
 
-Proration: 
-    If a block has no population for some race, say there are 0 asians in a block then none of the block group population will be distributed.
+Proration:
+
+If a block has no population for some race, say there are 0 asians in a block then none of the block group population will be distributed.
 
 Income:
-    Using total population at the block level, distribute households to blocks using total population as weights
+
+Using total population at the block level, distribute households to blocks using total population as weights
 
 Questions: 
-    - What to do about the VAP issue? We may want to just not include VAP information and just store CVAP and total.
-        - Note* VAP is available from Decenniel at block level while ACS has VAP at census tract level. On the otherhand, Deccenial does not have CVAP at all but ACS has CVAP at block group level.
-    - How do we store hispanic and nonhispanic demographics?
-    - Do we want senator information? What would that information be? (low priority, do at end when we have time)
-    - Do we want to store block and block group data on our database? (low priority, not any need at the moment as far as we are concerned)
-    - How to handle household numbers? Do we need household amnt per precinct? It might be enough just to have median income per precinct. At district level it might be more important to have house numbers just get a sense of poverty levels at the district levels.
+- What to do about the VAP issue? We may want to just not include VAP information and just store CVAP and total.
+    - Note* VAP is available from Decenniel at block level while ACS has VAP at census tract level. On the otherhand, Deccenial does not have CVAP at all but ACS has CVAP at block group level.
+- How do we store hispanic and nonhispanic demographics?
+- Do we want senator information? What would that information be? (low priority, do at end when we have time)
+- Do we want to store block and block group data on our database? (low priority, not any need at the moment as far as we are concerned)
+- How to handle household numbers? Do we need household amnt per precinct? It might be enough just to have median income per precinct. At district level it might be more important to have house numbers just get a sense of poverty levels at the district levels.
 
    s         |   CVAP  |   VAP   |  total  |  household income |
 -------------|---------|---------|---------|-------------------|
