@@ -81,3 +81,88 @@ Each processed GeoJSON file contains:
 - Election results (vote totals, candidate shares, etc.)  
 - Total and CVAP data (by race)  
 - *(Optional)* Income data (if later implemented)
+
+
+Documentation detailing the process for ACS to precinct data aggragation. All data from redistricting hub.
+
+Example Louisiana:
+    - Precinct 2024 general election results: https://redistrictingdatahub.org/dataset/louisiana-2024-general-election-november-5-precinct-boundaries-and-election-results/
+    - Block Group ACS race data 2019-2023: https://redistrictingdatahub.org/dataset/louisiana-2023-select-race-data-from-the-american-community-survey-20192023-at-the-block-group-level/
+    - Block Group ACS CVAP race data 2019-2023: https://redistrictingdatahub.org/dataset/louisiana-block-group-cvap-data-2023/
+    - Census Block 2020 Census PL 94-171: https://redistrictingdatahub.org/dataset/louisiana-block-pl-94171-2020/ ## redistricting hub data contains P1, P2, P3 and P4 tables
+    Definition for each column: https://www.census.gov/programs-surveys/decennial-census/about/rdo.html
+    - 2023 Block Group ACS Income Data (2019-2023): 
+
+Map Projection:
+    - Store source and final files as EPSG:4326, during data processing convert shapefile projection to EPSG:5070.
+        - Why? Each boundary file can use different projection systems that vary because each state uses their own projection. We could use each states State Plane CRS instead of EPSG:5070 as using the assigned CRS for each state can be more precise. 
+    - We should also consider storing the precinct boundary with simplified geometry as complex boundary data slows down the map loading on our site.
+
+Distributing Populations:
+
+Total: Total population
+    VAP: This is not being stored because, ACS provides VAP details only at the census tract level which is much larger than block group. Could significantly impact accuracy when we attempt to prorate the data to precinct leel.
+    CVAP: Unlike VAP, Decenniel does not contains CVAP data as such we have to use VAP population as our scale to distribute ACS block group CVAP data down to census blocks.
+        ACS CVAP did not have an other data. All of the racial estimates provided are Non-Hispanic. Breakdowns for Hispanic/Non-Hispanic by race are not provided in the CVAP special tabulation.
+
+This is how we plan to store race and ethnicity:
+    Total (Hispanic + Non-Hispanic)
+    White (Non-Hispanic)
+    Black (Non-Hispanic)
+    Asian (Non-Hispanic)
+    Native American (Non-Hispanic)
+    Hawaiian and Pecific Islander (Non-Hispanic)
+    Other (Non-Hispanic)
+    2 or More (Non-Hispanic)
+    Hispanic (any race)
+    Non-Hispanic (Total population of people who identify as Non-Hispanic)
+
+  Why did we choose to exclude racial demographics of people identifying as Hispanic?
+    Short answer is that on the cvap bg data it says "All of the racial estimates provided are Non-Hispanic. Breakdowns for Hispanic/Non-Hispanic by race are not provided in the CVAP special tabulation". For the sake of simplicity and consistancy we also do not keep hispanic and non-hispanic breakdowns for total populations.
+    Update: Census is moving Hispanic from Ethnicity to a category in race.
+
+  Long answer:
+    Hispanic is counted as an ethnicity not race as such each race can be hispanic or non-hispanic. In certain states such as Taxes where hispanic make up almost 40% of the population it may be appropriate to keep the racial category of different Hispanic races. In this case, I chose to group all Hispanic races together into one Hispanic category under the assumption that racial differences will not significantly change the voting behavior of people identifying as Hispanic on the census. In addition, dividing all people of Hispanic origin by their racial identities might produce groups too small to perform redistricting and voting analysis on and they might no meet the threshold for redistricting guidelines
+    
+  Among Hispanic voters though in certain states such as florida over 90% of Hispanic voters identify as white, though in the case of Florida it is mainly due to their large Cuban-American population. Overall though the vast majority of Hispanic voters identify as either white, two or more races or as other. Because of the diversity in racial makeup of hispanic, attempting to differentiate hispanic population by each racial category can lead to too much fragmantation and noise from the population which could make analysis and redistricting difficult.
+
+    Why did we keep 2 or more?
+    ...
+
+    What does other mean, why does it exist and why include it as part of PoliTech?
+    Others is a catagory for people who do not feel that the census bureau's pre-defined racial catagories effectivly represent them. For example, people who identify as hispanic often select other on the census, as do people from the MENA(Middle eastern or North African) region- which civil rights groups and other organizations such as ACLU(American Civicl Liberties Union) have long advocated for the OMB(Office of Management and Budget) to revisit the racial and ethnic definitions on the census. In fact on March 28, 2024, the OBM released a revised Statistical Policy Directive No.15 (or SPD 15, a directive that provides the standards for maintaining, collecting, and presenting race and ethnicity data for all Federal information collection and reporting purposes) which has now added Middle Eastern and North African as it's own racial category. Look at the link for more detail: https://spd15revision.gov/content/spd15revision/en/2024-spd15.html 
+
+    It is difficult to define racial categories as race itself is a social construct. It is an identity that is used to generalize people based on their physical attributes such as skin color which ignore the national, cultural and language identities that exists between people of the same race. Though through SPD 15, the OMB attempts to define racial categories as they are "understood to be socio-political constructs and are not attempts to define race and ethnicity biologically or genetically". The census bureau follows the racial and ethnic definitions set by the SPD 15.
+    
+    In addition to racial categories, ignoring the cutural, national or language nuances that people identify much more closely with; three is also a colloquial conflation of nationality with racial origins involves using a person's national identity as a stand-in for their perceived race or ethnicity. This practice is based on generalizations and stereotypes rather than reality, as modern nations are typically made up of a diverse mix of racial and ethnic groups. Because of this, others is a necassary option as racial catagorization cannot accurately represent the real identities that people associate with.
+    
+    In terms of the PoliTech research, because Other is a very diverse category that comprises people of many different identities, it is impossible to use this data as a tool to perform voting and redistring analysis. However, I believe it could still be a useful statistic to include in a case-by-case basis. On our site, it could be used to identify regions or districts that have a large population selecting "other". From there follow-up research could be done to understand "who" this population is what categories might better represent them which can be used for future census improvement.
+    
+    Ofcourse it should'nt need to be said that even if race is a man made category, it still has real world impact on people wether or not they themselves identify with the race.
+
+
+Proration: 
+    If a block has no population for some race, say there are 0 asians in a block then none of the block group population will be distributed.
+
+Income:
+    Using total population at the block level, distribute households to blocks using total population as weights
+
+Questions: 
+    - What to do about the VAP issue? We may want to just not include VAP information and just store CVAP and total.
+        - Note* VAP is available from Decenniel at block level while ACS has VAP at census tract level. On the otherhand, Deccenial does not have CVAP at all but ACS has CVAP at block group level.
+    - How do we store hispanic and nonhispanic demographics?
+    - Do we want senator information? What would that information be? (low priority, do at end when we have time)
+    - Do we want to store block and block group data on our database? (low priority, not any need at the moment as far as we are concerned)
+    - How to handle household numbers? Do we need household amnt per precinct? It might be enough just to have median income per precinct. At district level it might be more important to have house numbers just get a sense of poverty levels at the district levels.
+
+             |   CVAP  |   VAP   |  total  |  household income |
+-------------|---------|---------|---------|-------------------|
+ACS          |   yes   |   yes   |   yes   |        yes        |
+-------------|---------|---------|---------|-------------------|
+Decinniel    |         |   yes   |   yes   |                   |
+-------------|---------|---------|---------|-------------------|
+census block |         |  yes(D) |  yes(D) |                   |----> D = decenniel, A = ACS
+-------------|---------|---------|---------|-------------------|
+block group  |   yes   |         |  yes(A) |       yes(A)      |
+-------------|---------|---------|---------|-------------------|
+census track |         |  yes(A) |         |                   |
