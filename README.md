@@ -105,16 +105,16 @@ Distributing Populations:
 - CVAP: Unlike VAP, Decenniel does not contains CVAP data as such we have to use VAP population as our scale to distribute ACS block group CVAP data down to census blocks. ACS CVAP did not have an other data. All of the racial estimates provided are Non-Hispanic. Breakdowns for Hispanic/Non-Hispanic by race are not provided in the CVAP special tabulation.
 
 This is how we plan to store race and ethnicity:
-    Total (Hispanic + Non-Hispanic)
-    White (Non-Hispanic)
-    Black (Non-Hispanic)
-    Asian (Non-Hispanic)
-    Native American (Non-Hispanic)
-    Hawaiian and Pecific Islander (Non-Hispanic)
-    Other (Non-Hispanic)
-    2 or More (Non-Hispanic)
-    Hispanic (any race)
-    Non-Hispanic (Total population of people who identify as Non-Hispanic)
+- Total (Hispanic + Non-Hispanic)
+- White (Non-Hispanic)
+- Black (Non-Hispanic)
+- Asian (Non-Hispanic)
+- Native American (Non-Hispanic)
+- Hawaiian and Pecific Islander (Non-Hispanic)
+- Other (Non-Hispanic)
+- 2 or More (Non-Hispanic)
+- Hispanic (any race)
+- Non-Hispanic (Total population of people who identify as Non-Hispanic)
 
 Why did we choose to exclude racial demographics of people identifying as Hispanic?
 Short answer is that on the cvap bg data it says "All of the racial estimates provided are Non-Hispanic. Breakdowns for Hispanic/Non-Hispanic by race are not provided in the CVAP special tabulation". For the sake of simplicity and consistancy we also do not keep hispanic and non-hispanic breakdowns for total populations.
